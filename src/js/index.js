@@ -1,4 +1,4 @@
-import '../styles/index.scss';
+import '../scss/index.scss';
 
 import callHistory from './callHistory.json';
 import {timeAgo, transformCalls} from "./helper";
