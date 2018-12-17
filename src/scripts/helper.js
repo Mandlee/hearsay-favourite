@@ -58,32 +58,32 @@ export const transformCalls = (calls) => {
     let sortedResult;
 
     for (let i = 0, length = calls.length; i < length; i++) {
-        const call = calls[i];
+        const {firstName, lastName, phoneNumber, called} = calls[i];
 
-        //Phone numbers it not seem to me unique. Example: Wallace phone number
+        // Phone numbers it not seem to me unique. Example: Wallace phone number
         const previousCallIndex = result.findIndex(elem => {
-            return elem.lastName === call.lastName && elem.firstName === call.firstName;
+            return elem.lastName === lastName && elem.firstName === firstName;
         });
 
+        const call = {
+            phoneNumber,
+            called: new Date(called * 1000)
+        };
 
+        // Push other call to callsList
         if (previousCallIndex !== -1) {
-            result[previousCallIndex].callsList.push({
-                phoneNumber: call.phoneNumber,
-                called: new Date(call.called * 1000)
-            });
+            result[previousCallIndex].callsList.push(call);
         } else {
+            // Push result item with first item to callsList
             result.push({
-                firstName: call.firstName,
-                lastName: call.lastName,
-                callsList: [{
-                    phoneNumber: call.phoneNumber,
-                    called: new Date(call.called * 1000)
-                }]
+                firstName,
+                lastName,
+                callsList: [call]
             });
         }
     }
 
-    //
+    // Sorting each calls list descending
     for (let i = 0, length = result.length; i < length; i++) {
         const {callsList} = result[i];
         result[i].callsList = callsList.sort((a, b) => {
@@ -91,7 +91,8 @@ export const transformCalls = (calls) => {
         });
     }
 
-    //
+    // Sorting contacts descending by callsList length,
+    // when two contacts are equal, then the contact with the latest last call
     sortedResult = result.sort((a, b) => {
         if (a.callsList.length === b.callsList.length) {
             return b.callsList[0].called - a.callsList[0].called;
@@ -99,6 +100,5 @@ export const transformCalls = (calls) => {
         return b.callsList.length - a.callsList.length;
     });
 
-    console.log(sortedResult);
     return sortedResult;
 };
