@@ -4,21 +4,23 @@ Take-home assignment for Hearsay Budapest Sites Developer Candidates
 
 
 ### Installation
-
+- Before you start working please install the npm packages:
 ```
 npm install
 ```
 
-### Start Dev Server
+### Build prod and serve application
+- Serving application on: http://localhost:8888   
 
 ```
 npm start
 ```
 
-### Build Prod Version
+### Run development mode
+With hot reloaded. Project is running at http://localhost:8080/
 
 ```
-npm run build
+npm run dev
 ```
 
 ### Features:
@@ -63,19 +65,3 @@ Please refer to the mock-up image in the ```mockup``` folder. Colors, padding, m
 
 ### Nice to have
 If you are comfortable with webpack and its configuration then change the application to use SASS/SCSS instead of plain CSS. (This is not mandatory)
-
-## Technical help
-We created an environment for you to accomplish this task. 
-- Before you start working please install the npm packages:
-```
-npm install
-```
-- To build and run your application
-```
-npm start
-```    
-- This command will transpile and bundle your code into ```public/bundle.js```, which will be loaded by the browser
-  It will also start a local server, you may access your application at ```http://localhost:8888```
-- The project is set up with babel and webpack, which allows you to use most of the ES6 features
-
-
